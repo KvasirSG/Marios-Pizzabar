@@ -34,7 +34,7 @@ public class DataManager{
                 // Iterate through each Pizza object in the list.
                 for (Pizza pizza:pizzaList){
                     // Write each Pizza object's attributes to the file in CSV format.
-                    printWriter.println(pizza.getPizzaID()+","+pizza.getName()+","+pizza.getIngredient()+","+pizza.getPrice());
+                    printWriter.println(pizza.getPizzaID()+";"+pizza.getName()+";"+pizza.getIngredient()+";"+pizza.getPrice());
                 }
             }
         } catch (IOException e) {
@@ -66,7 +66,7 @@ public class DataManager{
             // Loop through each line in the file.
             while (scanner.hasNextLine()){
                 // Split each line into parts using commas as the delimiter.
-                String[] data = scanner.nextLine().split(",");
+                String[] data = scanner.nextLine().split(";");
                 // Create a new Pizza object from the split data.
                 Pizza pizza = new Pizza(Integer.parseInt(data[0]),data[1],data[2],Double.parseDouble(data[3]));
                 // Add the new Pizza object to the list.
@@ -80,8 +80,26 @@ public class DataManager{
         return pizzaList;
     }
 
-    public static void writeOrderToFile() {
-
+    public static void writeOrderToFile(List<Order> orderList, String filename) {
+        // Create a File object for the specified filename.
+        File file = new File(filename);
+        try {
+            // Check if the file exists, and create a new one if it does not.
+            if (!file.exists()){
+                file.createNewFile(); // create a new file if it does not exist.
+            }
+            // Use PrintWriter to write text to the file.
+            try (PrintWriter printWriter= new PrintWriter(new FileWriter(file,false))){
+                // Iterate through each Order object in the list.
+                for (Order order:orderList){
+                    // Write each Order object's attributes to the file in CSV format.
+                    printWriter.println(order.getOrderID()+";"+order.getPizzas()+";"+order.getOrderTime());
+                }
+            }
+        } catch (IOException e) {
+            // Handle possible IOExceptions from file creation or writing.
+            System.out.println("An error occurred while writing to or creating the file: " + e.getMessage());
+        }
     }
 
     public static List<Order> readOrderFromFile() {
