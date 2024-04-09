@@ -30,10 +30,10 @@ public class Order{
         int hour = now.getHour();
         int minute = now.getMinute();
         int second = now.getSecond();
-        // Concatenate and convert the first 6 digits to an integer
+        // Concatenates and converts the first 6 digits to an integer to be used for ID of the individual orderss
         String idString = String.format("%02d%02d%02d%02d%02d%02d", year, month, day, hour, minute, second);
         return Integer.parseInt(idString);
-   
+   }
    //Getter method for OrderTime, returns orderTime value
    public LocalDateTime getOrderTime() {
       return orderTime;
@@ -47,8 +47,8 @@ public class Order{
    // End of Getter method for OrderID
    
    // Pizza adding method, allows the addition of pizzas to orders. 
-   public addPizza(Pizza pizza){
-      pizzas.add(Pizza); 
+   public void  addPizza(Pizza pizza){
+      pizzas.add(pizza); 
    }
    // Method for returning the pizzas on the order
    public List<Pizza> getPizzas() {
