@@ -1,3 +1,5 @@
 TestPizza.java
 *.class
 
+
+.idea/
