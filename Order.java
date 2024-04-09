@@ -20,6 +20,11 @@ public class Order{
       this.orderTime = LocalDateTime.now();
    }
    //End of Order Constructor
+    public Order(Long orderID, List<Pizza> pizzaList, LocalDateTime orderTime){
+       this.orderID = orderID;
+        this.pizzas = pizzaList;
+        this.orderTime = orderTime;
+    }
    
    // ID from timestamp method, to allow individual ID of the order instead of using Hashmap
    private long generateIDFromTimestamp() {
