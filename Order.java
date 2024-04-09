@@ -10,6 +10,7 @@ public class Order{
    private long orderID;
    private List<Pizza> pizzas; 
    private LocalDateTime orderTime; 
+   private int priority;
    
    // Constructor for the Order object, provides ID for the order as well as initializing the ArrayList "Pizzas"
    // Furthermore applies orderTime to the order for documentation
@@ -20,7 +21,12 @@ public class Order{
       this.orderTime = LocalDateTime.now();
    }
    //End of Order Constructor
-   
+   //Overloaded constructor, intended for DataManager class to add
+   public Order(Long orderID, List<Pizza> pizzaList, LocalDateTime orderTime){
+       this.orderID = orderID;
+        this.pizzas = pizzaList;
+        this.orderTime = orderTime;
+   }
    // ID from timestamp method, to allow individual ID of the order instead of using Hashmap
    private long generateIDFromTimestamp() {
         LocalDateTime now = LocalDateTime.now();
@@ -54,5 +60,15 @@ public class Order{
    public List<Pizza> getPizzas() {
         return pizzas;
     }
+    
+    // Setter method allowing priority to be set in the OrderManager class
+    public void setPriority(int priority) {
+        this.priority = priority;
+   }
    
+   // Getter method for the OrderManager class
+   public int getPriority() {
+        return priority;
+   }
 }
+   
