@@ -7,7 +7,7 @@ import java.util.*;
 public class Order{
    
    private static int nextID; 
-   private int orderID; 
+   private long orderID;
    private List<Pizza> pizzas; 
    private LocalDateTime orderTime; 
    
@@ -22,7 +22,7 @@ public class Order{
    //End of Order Constructor
    
    // ID from timestamp method, to allow individual ID of the order instead of using Hashmap
-   private int generateIDFromTimestamp() {
+   private long generateIDFromTimestamp() {
         LocalDateTime now = LocalDateTime.now();
         int year = now.getYear() % 100; // Get last two digits of the year
         int month = now.getMonthValue();
@@ -32,7 +32,7 @@ public class Order{
         int second = now.getSecond();
         // Concatenates and converts the first 6 digits to an integer to be used for ID of the individual orderss
         String idString = String.format("%02d%02d%02d%02d%02d%02d", year, month, day, hour, minute, second);
-        return Integer.parseInt(idString);
+        return Long.parseLong(idString);
    }
    //Getter method for OrderTime, returns orderTime value
    public LocalDateTime getOrderTime() {
@@ -41,7 +41,7 @@ public class Order{
    // End of getOrderTime 
    
    // Getter method for OrderID
-   public int getOrderID(){
+   public long getOrderID(){
       return orderID; 
    }
    // End of Getter method for OrderID
