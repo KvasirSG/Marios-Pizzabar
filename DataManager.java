@@ -1,4 +1,5 @@
 import java.io.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -80,6 +81,18 @@ public class DataManager{
         return pizzaList;
     }
 
+    /**
+     * Writes a list of Order objects to a specified file in CSV format.
+     * Each Order object's attributes are written to a single line in the file,
+     * with attributes separated by commas.
+     * <p>
+     * If the specified file does not exist, it will be created.
+     * If the file already exists, its contents will be overwritten.
+     * </p>
+     *
+     * @param orderList A List of Pizza objects to be written to the file.
+     * @param filename  The name of the file to which the pizza menu should be written.
+     */
     public static void writeOrderToFile(List<Order> orderList, String filename) {
         // Create a File object for the specified filename.
         File file = new File(filename);
@@ -102,8 +115,50 @@ public class DataManager{
         }
     }
 
-    public static List<Order> readOrderFromFile() {
-        return null;
+    public static List<Order> readOrderFromFile(String filename) {
+        // Initialize an empty list to store Order objects.
+        List<Order> orderList  = new ArrayList<>();
+        // Create a Scanner to read the file.
+        try (Scanner scanner = new Scanner(new File(filename))){
+            // Loop through each line in the file.
+            while (scanner.hasNextLine()){
+                // Split each line into parts using commas as the delimiter.
+                String[] data = scanner.nextLine().split(";");
+                long orderId = Long.parseLong(data[0]);
+
+                // process the pizza list
+                List<Pizza> pizzaList = parsePizzaList(data[1]);
+
+                // parse the datetime
+                LocalDateTime dateTime = LocalDateTime.parse(data[2]);
+
+                // create an order and add it to the list
+                orderList.add(new Order()); //TODO need a fix for order class
+            }
+        } catch (FileNotFoundException e){
+            // Print an error message if the file cannot be found.
+            System.out.println("File not found: "+e.getMessage());
+        }
+        // Return the list of Order objects.
+        return orderList;
+    }
+
+    private static List<Pizza> parsePizzaList(String pizzaListStr){
+        List<Pizza> pizzaList = new ArrayList<>();
+        // Remove the enclosing brackets and split by "], ["
+        String[] pizzaStrs = pizzaListStr.substring(2, pizzaListStr.length() - 2).split("\\], \\[");
+
+        for (String pizzaStr : pizzaStrs) {
+            String[] pizzaComponents = pizzaStr.split(", ");
+            // Assuming the Pizza constructor takes id, name, ingredient, and price
+            int pizzaID = Integer.parseInt(pizzaComponents[0]);
+            String name = pizzaComponents[1];
+            String ingredient = pizzaComponents[2];
+            double price = Double.parseDouble(pizzaComponents[3]);
+
+            pizzaList.add(new Pizza(pizzaID, name, ingredient, price));
+        }
+        return pizzaList;
     }
 
     /**
