@@ -12,6 +12,7 @@ public class Menu
       this.pizzaList = new ArrayList<Pizza>();
    }
 
+   //method to call pizza with pizzaID
    public Pizza getPizzaByID(int pizzaID) 
    { 
       for (Pizza pizza : pizzaList) 
@@ -35,6 +36,7 @@ public class Menu
       pizzaList.remove(pizza);  
    }
    
+  //getter method for pizzaList
   public List<Pizza> getPizzaList()
    {  
       return pizzaList;
