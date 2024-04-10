@@ -1,5 +1,8 @@
-public class Pizza 
+import java.io.Serializable;
+
+public class Pizza implements Serializable
 {
+   private static final long serialVersionUID = 1L;
    private int pizzaID;
    private String name;
    private String ingredient;
@@ -46,5 +49,11 @@ public class Pizza
    public void setPrice(double price)
    {
       this.price = price;
+   }
+
+   @Override
+   public String toString() {
+      // Mimics an array format: [pizzaID, name, ingredient, price]
+      return String.format("[%d, %s, %s, %.2f]", pizzaID, name, ingredient, price);
    }
 }
