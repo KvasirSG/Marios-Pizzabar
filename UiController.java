@@ -9,12 +9,17 @@ import java.util.List;
  */
 public class UiController implements iUiController{
     private List<Pizza> selectedPizzaList;
+    private Menu menu;
+    private OrderManager orderManager;
 
     /**
      * Constructs a new UiController instance, initializing the list of selected pizzas.
      */
     public UiController(){
         selectedPizzaList = new ArrayList<>();
+        menu = new Menu();
+        orderManager = new OrderManager();
+
     }
 
     /**
@@ -49,7 +54,7 @@ public class UiController implements iUiController{
      */
     @Override
     public void addPizzaToList(int pizzaID) {
-        //TODO when menu class is made
+        selectedPizzaList.add(menu.getPizzaByID(pizzaID));
     }
 
     /**
@@ -60,7 +65,7 @@ public class UiController implements iUiController{
      */
     @Override
     public void removePizzaFromList(int pizzaID) {
-        //TODO when menu class is made
+        selectedPizzaList.remove(menu.getPizzaByID(pizzaID));
     }
 
     /**
