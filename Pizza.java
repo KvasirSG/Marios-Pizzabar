@@ -1,5 +1,8 @@
-public class Pizza 
+import java.io.Serializable;
+
+public class Pizza implements Serializable
 {
+   private static final long serialVersionUID = 1L;
    private int pizzaID;
    private String name;
    private String ingredient;
