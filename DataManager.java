@@ -133,7 +133,7 @@ public class DataManager{
                 LocalDateTime dateTime = LocalDateTime.parse(data[2]);
 
                 // create an order and add it to the list
-                orderList.add(new Order()); //TODO need a fix for order class
+                orderList.add(new Order(orderId,pizzaList,dateTime));
             }
         } catch (FileNotFoundException e){
             // Print an error message if the file cannot be found.
