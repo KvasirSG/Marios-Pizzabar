@@ -1,11 +1,12 @@
 // Class for creating orders, apply timestamp and ID
 // Accesses List<Pizza> for menu items on the order
 // by Duofour
-import java.time.*; 
+import java.io.Serializable;
+import java.time.*;
 import java.util.*;
 
-public class Order{
-   
+public class Order implements Serializable {
+    private static final long serialVersionUID = 2L;
    private static int nextID; 
    private long orderID;
    private List<Pizza> pizzas; 
@@ -70,5 +71,25 @@ public class Order{
    public int getPriority() {
         return priority;
    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("OrderID: ").append(orderID).append(", ");
+        sb.append("OrderTime: ").append(orderTime).append(", ");
+        sb.append("Priority: ").append(priority).append(", ");
+        sb.append("Pizzas: [");
+
+        for (int i = 0; i < pizzas.size(); i++) {
+            sb.append(pizzas.get(i).toString());
+            if (i < pizzas.size() - 1) {
+                sb.append(", "); // Add comma except after the last pizza
+            }
+        }
+
+        sb.append("]");
+        return sb.toString();
+    }
+
 }
    
