@@ -18,13 +18,12 @@ public class Menu
       {
          if (pizza.getPizzaID() == pizzaID) 
          {
-            System.out.println(pizza);
-            return pizza;
-            
+            return pizza;        
          }
       }
       return null;
       }
+      
    // method for adding pizza 
    public void addPizza(Pizza pizza)
    {
@@ -33,12 +32,11 @@ public class Menu
    // method for removing pizza
    public void removePizza(Pizza pizza)
    {
-         pizzaList.remove(pizza);  
+      pizzaList.remove(pizza);  
    }
    
   public List<Pizza> getPizzaList()
-   {
-      System.out.println(pizzaList);  
+   {  
       return pizzaList;
    }
 
