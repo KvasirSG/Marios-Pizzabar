@@ -80,13 +80,12 @@ public class UiController implements iUiController{
      * Retrieves a pizza from the menu by its ID.
      * Note: This method is a placeholder and needs to be implemented when the Menu class is created.
      *
-     * @param PizzaID The ID of the pizza to retrieve.
+     * @param pizzaID The ID of the pizza to retrieve.
      * @return The Pizza object if found, null otherwise.
      */
     @Override
-    public Pizza getPizzaFromMenu(int PizzaID) {
-        //TODO when menu class is made
-        return null;
+    public Pizza getPizzaFromMenu(int pizzaID) {
+        return menu.getPizzaByID(pizzaID);
     }
 
     /**
@@ -97,8 +96,7 @@ public class UiController implements iUiController{
      */
     @Override
     public List<Pizza> getPizzaMenu() {
-        //TODO when menu class is made
-        return null;
+        return menu.getPizzaList();
     }
 
     /**
