@@ -4,12 +4,19 @@ import java.util.List;
 public class Menu
 {
    private List<Pizza> pizzaList;
-   String pizzaMenuFile = "pizzaMenu.txt";
+   String pizzaMenuFile = "Menu.pizza";
 
    // Menu contructor 
    public Menu() 
    {
-      this.pizzaList = new ArrayList<Pizza>();
+
+      if (DataManager.readPizzasFromFile(pizzaMenuFile) == null){
+         this.pizzaList = new ArrayList<Pizza>();
+      } else {
+         this.pizzaList = DataManager.readPizzasFromFile(pizzaMenuFile);
+      }
+
+
    }
 
    //method to call pizza with pizzaID
@@ -29,11 +36,13 @@ public class Menu
    public void addPizza(Pizza pizza)
    {
       pizzaList.add(pizza);
+      DataManager.writePizzasToFile(pizzaList,pizzaMenuFile);
    }
    // method for removing pizza
    public void removePizza(Pizza pizza)
    {
-      pizzaList.remove(pizza);  
+      pizzaList.remove(pizza);
+      DataManager.writePizzasToFile(pizzaList,pizzaMenuFile);
    }
    
   //getter method for pizzaList
