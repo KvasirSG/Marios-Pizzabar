@@ -9,9 +9,6 @@ public class UiTerminal {
     UiController uiController;
     public UiTerminal(UiController uiController){
         this.uiController = uiController;
-        this.uiController.addPizzaToMenu("Margherita","Tomatsauce, mozzarella, basilikum", 8.99);
-        this.uiController.addPizzaToMenu("Pepperoni","Tomatsauce, mozzarella, pepperoni", 9.99);
-        this.uiController.addPizzaToMenu("Vegetarian","Tomat og Ost", 9.49);
         uInputHandler();
     }
     private void displayMenu() {
