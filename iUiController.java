@@ -1,7 +1,7 @@
 import java.util.List;
 
 public interface iUiController {
-    public void addPizzaToMenu(String name, String ingredient, double price);
+    public void addPizzaToMenu(String name, String ingredient, double price); 
     public void removePizzaFromMenu(int pizzaID);
     public void addPizzaToList(int pizzaID);
     public void removePizzaFromList(int pizzaID);

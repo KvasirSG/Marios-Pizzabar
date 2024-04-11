@@ -31,8 +31,9 @@ public class UiController implements iUiController{
      * @param price The price of the pizza.
      */
     @Override
-    public void addPizzaToMenu(String name, String ingredient, double price) {
-        //TODO when menu class is made
+    public void addPizzaToMenu(String name, String ingredient, double price) 
+    {
+      menu.addPizza(new pizza(name, ingredient, price));       
     }
 
     /**
@@ -42,8 +43,9 @@ public class UiController implements iUiController{
      * @param pizzaID The ID of the pizza to remove.
      */
     @Override
-    public void removePizzaFromMenu(int pizzaID) {
-        //TODO when menu class is made
+    public void removePizzaFromMenu(int pizzaID) 
+    {
+      menu.removePizza(menu.getPizzaByID(pizzaID);
     }
 
     /**
@@ -104,7 +106,8 @@ public class UiController implements iUiController{
      * Note: This method is a placeholder and needs to be implemented when the Order class is created.
      */
     @Override
-    public void addPizzaOrder() {
+    public void addPizzaOrder() 
+    {
         //TODO when Order class is made
     }
 
