@@ -1,7 +1,5 @@
 TestPizza.java
 *.class
-
-
-.idea/
-
 *.iml
+out/
+.idea/
