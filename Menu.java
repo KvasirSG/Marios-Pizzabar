@@ -9,8 +9,14 @@ public class Menu
    // Menu contructor 
    public Menu() 
    {
-      this.pizzaList = new ArrayList<Pizza>();
-      this.pizzaList = DataManager.readPizzasFromFile(pizzaMenuFile);
+
+      if (DataManager.readPizzasFromFile(pizzaMenuFile) == null){
+         this.pizzaList = new ArrayList<Pizza>();
+      } else {
+         this.pizzaList = DataManager.readPizzasFromFile(pizzaMenuFile);
+      }
+
+
    }
 
    //method to call pizza with pizzaID
