@@ -10,6 +10,7 @@ public class Menu
    public Menu() 
    {
       this.pizzaList = new ArrayList<Pizza>();
+      this.pizzaList = DataManager.readPizzasFromFile(pizzaMenuFile);
    }
 
    //method to call pizza with pizzaID
@@ -29,11 +30,13 @@ public class Menu
    public void addPizza(Pizza pizza)
    {
       pizzaList.add(pizza);
+      DataManager.writePizzasToFile(pizzaList,pizzaMenuFile);
    }
    // method for removing pizza
    public void removePizza(Pizza pizza)
    {
-      pizzaList.remove(pizza);  
+      pizzaList.remove(pizza);
+      DataManager.writePizzasToFile(pizzaList,pizzaMenuFile);
    }
    
   //getter method for pizzaList
