@@ -33,7 +33,7 @@ public class UiController implements iUiController{
     @Override
     public void addPizzaToMenu(String name, String ingredient, double price) 
     {
-      menu.addPizza(new pizza(name, ingredient, price));       
+      menu.addPizza(new Pizza(name, ingredient, price));
     }
 
     /**
@@ -45,7 +45,7 @@ public class UiController implements iUiController{
     @Override
     public void removePizzaFromMenu(int pizzaID) 
     {
-      menu.removePizza(menu.getPizzaByID(pizzaID);
+      menu.removePizza(menu.getPizzaByID(pizzaID));
     }
 
     /**
