@@ -4,7 +4,7 @@ import java.util.List;
 public class Menu
 {
    private List<Pizza> pizzaList;
-   String pizzaMenuFile = "pizzaMenu.txt";
+   String pizzaMenuFile = "Menu.pizza";
 
    // Menu contructor 
    public Menu() 
