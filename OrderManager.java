@@ -5,20 +5,32 @@ import java.util.*;
 
 public class OrderManager {
     private List<Order> orders;
+    String orderFile = "Orders.pizza";
     private List<Order> completedOrders;
+    String completeOrderFile = "CompleteOrders.pizza"; 
     private int nextPriority;
 
     // Constructor to initialize the OrderManager
     public OrderManager() {
         this.orders = new ArrayList<>();
+        List<Order> tempOrderList = DataManager.readOrdersFromFile(orderFile);
+         if (tempOrderList != null){
+            orders.addAll(tempOrderList);
+        }
         this.completedOrders = new ArrayList<>();
+        List<Order> tempCompleteOrderList = DataManager.readOrdersFromFile(completeOrderFile);
+         if (tempCompleteOrderList != null){
+            orders.addAll(tempCompleteOrderList);
+        }
         this.nextPriority = 1;
     }
 
     // Method to add an order to the list of active orders
     public boolean addOrder(Order order) {
         order.setPriority(nextPriority++);
-        return orders.add(order);
+        boolean tempAddOrder = orders.add(order);
+         DataManager.writeOrderToFile(orders, orderFile);
+        return tempAddOrder;
     }
 
     // Method to remove an order from the list of active orders based on its priority
@@ -26,6 +38,7 @@ public class OrderManager {
         for (Order order : orders) {
             if (order.getPriority() == priority) {
                 boolean removed = orders.remove(order);
+                DataManager.writeOrderToFile(orders, orderFile);
                 if (removed) {
                     updatePriorities();
                 }
@@ -40,6 +53,7 @@ public class OrderManager {
         for (Order order : orders) {
             if (order.getPriority() == priority) {
                 boolean removed = orders.remove(order);
+                DataManager.writeOrderToFile(orders, completeOrderFile);
                 if (removed) {
                     completedOrders.add(order);
                     updatePriorities();
@@ -70,6 +84,7 @@ public class OrderManager {
         for (Order order : orders) {
             order.setPriority(priority++);
         }
+        DataManager.writeOrderToFile(orders, orderFile);
         nextPriority = priority;
     }
 
