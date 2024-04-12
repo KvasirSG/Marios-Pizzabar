@@ -6,7 +6,7 @@ import java.time.*;
 import java.util.*;
 
 public class Order implements Serializable {
-    private static final long serialVersionUID = 2L;
+   private static final long serialVersionUID = 2L;
    private static int nextID; 
    private long orderID;
    private List<Pizza> pizzas; 
@@ -71,7 +71,7 @@ public class Order implements Serializable {
    public int getPriority() {
         return priority;
    }
-
+   
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
