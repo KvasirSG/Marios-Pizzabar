@@ -52,8 +52,8 @@ public class Pizza implements Serializable
       this.price = price;
    }
 
-   public String toString() 
-   {
+   @Override
+   public String toString() {
       // Mimics an array format: [pizzaID, name, ingredient, price]
       return String.format("[%d, %s, %s, %.2f]", pizzaID, name, ingredient, price);
    }
