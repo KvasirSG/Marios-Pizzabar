@@ -9,6 +9,8 @@ public interface iUiController {
     public Pizza getPizzaFromMenu(int PizzaID);
     public List<Pizza> getPizzaMenu();
     public void addPizzaOrder();
-    public void removePizzaOrder(int OrderID);
-    //TODO public List<Order> getAllOrders();
+    public void removePizzaOrder(int priority);
+    public void completeOrder(int priority);
+    public List<Order> getAllOrders();
+    public List<Order> getAllCompletedOrders();
 }
