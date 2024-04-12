@@ -74,6 +74,11 @@ public class UiController implements iUiController{
         selectedPizzaList.clear();
     }
 
+    @Override
+    public List<Pizza> getPizzaList() {
+        return selectedPizzaList;
+    }
+
     /**
      * Retrieves a pizza from the menu by its ID.
      *
@@ -106,6 +111,7 @@ public class UiController implements iUiController{
             order.addPizza(pizza);
         }
         orderManager.addOrder(order);
+        clearPizzaList();
     }
 
     /**
