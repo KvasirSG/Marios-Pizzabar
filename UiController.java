@@ -24,7 +24,6 @@ public class UiController implements iUiController{
 
     /**
      * Adds a pizza to the menu.
-     * Note: This method is a placeholder and needs to be implemented when the Menu class is created.
      *
      * @param name The name of the pizza to add.
      * @param ingredient The ingredients of the pizza.
@@ -38,7 +37,6 @@ public class UiController implements iUiController{
 
     /**
      * Removes a pizza from the menu by its ID.
-     * Note: This method is a placeholder and needs to be implemented when the Menu class is created.
      *
      * @param pizzaID The ID of the pizza to remove.
      */
@@ -50,7 +48,6 @@ public class UiController implements iUiController{
 
     /**
      * Adds a pizza to the list of selected pizzas by its ID.
-     * Note: This method is a placeholder and needs to be implemented when the Menu class is created.
      *
      * @param pizzaID The ID of the pizza to add to the list.
      */
@@ -61,7 +58,6 @@ public class UiController implements iUiController{
 
     /**
      * Removes a pizza from the list of selected pizzas by its ID.
-     * Note: This method is a placeholder and needs to be implemented when the Menu class is created.
      *
      * @param pizzaID The ID of the pizza to remove from the list.
      */
@@ -80,7 +76,6 @@ public class UiController implements iUiController{
 
     /**
      * Retrieves a pizza from the menu by its ID.
-     * Note: This method is a placeholder and needs to be implemented when the Menu class is created.
      *
      * @param pizzaID The ID of the pizza to retrieve.
      * @return The Pizza object if found, null otherwise.
@@ -92,7 +87,6 @@ public class UiController implements iUiController{
 
     /**
      * Retrieves the current pizza menu.
-     * Note: This method is a placeholder and needs to be implemented when the Menu class is created.
      *
      * @return A list of Pizza objects representing the current menu, null if not available.
      */
@@ -103,22 +97,51 @@ public class UiController implements iUiController{
 
     /**
      * Adds an order for the selected pizzas.
-     * Note: This method is a placeholder and needs to be implemented when the Order class is created.
      */
     @Override
     public void addPizzaOrder() 
     {
-        //TODO when Order class is made
+        Order order = new Order();
+        for (Pizza pizza: selectedPizzaList){
+            order.addPizza(pizza);
+        }
+        orderManager.addOrder(order);
     }
 
     /**
-     * Removes an order by its ID.
-     * Note: This method is a placeholder and needs to be implemented when the Order class is created.
+     * Removes an order by its priority.
      *
-     * @param OrderID The ID of the order to remove.
+     * @param priority The priority of the order to remove.
      */
     @Override
-    public void removePizzaOrder(int OrderID) {
-        //TODO when Order class is made
+    public void removePizzaOrder(int priority) {
+        orderManager.removeOrder(priority);
+    }
+
+    /**
+     * method to complete an order.
+     * @param priority
+     */
+    @Override
+    public void completeOrder(int priority) {
+        orderManager.completeOrder(priority);
+    }
+
+    /**
+     * retrieves all active orders
+     * @return orders
+     */
+    @Override
+    public List<Order> getAllOrders() {
+        return orderManager.getOrders();
+    }
+
+    /**
+     * retrieves all completed orders.
+     * @return completedOrders
+     */
+    @Override
+    public List<Order> getAllCompletedOrders() {
+        return orderManager.getCompletedOrders();
     }
 }
