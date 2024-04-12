@@ -64,7 +64,6 @@ public class OrderManager {
     public List<Order> getOrders() {
         return orders;
     }
-
     // Method to update priorities after an order is removed
     private void updatePriorities() {
         int priority = 1;
