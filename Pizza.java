@@ -3,25 +3,13 @@ import java.io.Serializable;
 public class Pizza implements Serializable
 {
    private static final long serialVersionUID = 1L;
-   private static int lastPizzaID = 0;
    private int pizzaID;
    private String name;
    private String ingredient;
    private double price;
 
-   // Constructor for automatic ID generation
-   public Pizza(String name, String ingredient, double price) {
-      this.pizzaID = ++lastPizzaID;
-      this.name = name;
-      this.ingredient = ingredient;
-      this.price = price;
-   }
-
-   // Overloaded constructor for manual ID setting
+   // constructor
    public Pizza(int pizzaID, String name, String ingredient, double price) {
-      if (pizzaID > lastPizzaID) {
-         lastPizzaID = pizzaID; // Update the lastPizzaID if the manual ID is greater
-      }
       this.pizzaID = pizzaID;
       this.name = name;
       this.ingredient = ingredient;
