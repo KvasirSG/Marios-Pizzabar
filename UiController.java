@@ -33,7 +33,7 @@ public class UiController implements iUiController{
     @Override
     public void addPizzaToMenu(String name, String ingredient, double price) 
     {
-      menu.addPizza(new Pizza(name, ingredient, price));
+      menu.addPizza(new Pizza(menu.getNextHighestID(), name, ingredient, price));
     }
 
     /**
