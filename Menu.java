@@ -7,16 +7,13 @@ public class Menu
    String pizzaMenuFile = "Menu.pizza";
 
    // Menu contructor 
-   public Menu() 
+   public Menu()
    {
-
-      if (DataManager.readPizzasFromFile(pizzaMenuFile) == null){
-         this.pizzaList = new ArrayList<Pizza>();
-      } else {
-         this.pizzaList = DataManager.readPizzasFromFile(pizzaMenuFile);
+      this.pizzaList = new ArrayList<Pizza>();
+      List<Pizza> tempPizzaList = DataManager.readPizzasFromFile(pizzaMenuFile);
+      if (tempPizzaList!=null){
+         pizzaList.addAll(tempPizzaList);
       }
-
-
    }
 
    //method to call pizza with pizzaID
@@ -49,6 +46,16 @@ public class Menu
   public List<Pizza> getPizzaList()
    {  
       return pizzaList;
+   }
+
+   public int getNextHighestID(){
+      int highestID = 0;
+      for (Pizza pizza:pizzaList){
+         if (pizza.getPizzaID() > highestID){
+            highestID = pizza.getPizzaID();
+         }
+      }
+      return highestID+1;
    }
 
 }
