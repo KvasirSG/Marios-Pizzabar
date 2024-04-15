@@ -12,6 +12,7 @@ public class Order implements Serializable {
    private List<Pizza> pizzas; 
    private LocalDateTime orderTime; 
    private int priority;
+   private LocalDateTime completionTime;
    
    // Constructor for the Order object, provides ID for the order as well as initializing the ArrayList "Pizzas"
    // Furthermore applies orderTime to the order for documentation
@@ -71,6 +72,13 @@ public class Order implements Serializable {
    public int getPriority() {
         return priority;
    }
+   public void setCompletionTime(LocalDateTime completionTime) {
+        this.completionTime = completionTime;
+    }
+
+   public LocalDateTime getCompletionTime() {
+        return completionTime;
+    }
    
     @Override
     public String toString() {
@@ -90,6 +98,6 @@ public class Order implements Serializable {
         sb.append("]");
         return sb.toString();
     }
-
+    
 }
    

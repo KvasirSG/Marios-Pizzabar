@@ -9,7 +9,7 @@ public interface iUiController {
     List<Pizza> getPizzaList();
     public Pizza getPizzaFromMenu(int PizzaID);
     public List<Pizza> getPizzaMenu();
-    public void addPizzaOrder();
+    public void addPizzaOrder(int completionTime);
     public void removePizzaOrder(int priority);
     public void completeOrder(int priority);
     public List<Order> getAllOrders();
