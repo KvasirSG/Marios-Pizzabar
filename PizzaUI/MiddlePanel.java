@@ -31,7 +31,7 @@ public class MiddlePanel extends JPanel {
     }
 
     public void updateMenu(){
-        menuCard.updatePizzaList(uiController.getPizzaList());
+        menuCard.updatePizzaList(uiController.getPizzaMenu());
     }
     public void updateAOrders(){
         activeOrdersCard.updateActiveOrdersList(uiController.getAllOrders());
