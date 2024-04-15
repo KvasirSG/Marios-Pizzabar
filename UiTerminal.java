@@ -1,3 +1,7 @@
+import PizzaApp.Order;
+import PizzaApp.Pizza;
+import PizzaApp.UiController;
+
 import java.util.*;
 
 /**
@@ -92,7 +96,7 @@ public class UiTerminal {
             }
         }
         if (!uiController.getPizzaList().isEmpty()) {
-            uiController.addPizzaOrder();
+            //uiController.addPizzaOrder();
             displayOrders();
         }
 

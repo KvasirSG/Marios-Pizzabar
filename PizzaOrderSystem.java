@@ -1,3 +1,8 @@
+import PizzaApp.UiController;
+import PizzaUI.WindowFrame;
+
+import javax.swing.*;
+
 /**
  * Main class representing the pizza ordering system
  * Acting as interface between the logic and the UI
@@ -7,7 +12,9 @@ public class PizzaOrderSystem {
         // making an instance of the UiController
         UiController uiController = new UiController();
 
-        // making an instance of the UiTerminal
-        UiTerminal uiTerminal = new UiTerminal(uiController);
+        SwingUtilities.invokeLater(() -> {
+            WindowFrame mainFrame = new WindowFrame(uiController);
+            mainFrame.setVisible(true);
+        });
     }
 }
