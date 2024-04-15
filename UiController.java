@@ -104,13 +104,13 @@ public class UiController implements iUiController{
      * Adds an order for the selected pizzas.
      */
     @Override
-    public void addPizzaOrder() 
+    public void addPizzaOrder(int completionTime) 
     {
         Order order = new Order();
         for (Pizza pizza: selectedPizzaList){
             order.addPizza(pizza);
         }
-        orderManager.addOrder(order);
+        orderManager.addOrder(order, completionTime);
         clearPizzaList();
     }
 
