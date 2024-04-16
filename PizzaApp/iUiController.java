@@ -16,4 +16,5 @@ public interface iUiController {
     public void completeOrder(int priority);
     public List<Order> getAllOrders();
     public List<Order> getAllCompletedOrders();
+    public List<Double> getOrderSums();
 }
