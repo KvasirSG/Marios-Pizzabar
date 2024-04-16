@@ -1,11 +1,12 @@
-/*OrderManager class intended to handle and manage the orders prior to use in the controller class
+package PizzaApp;/*OrderManager class intended to handle and manage the orders prior to use in the controller class
 Made by Duofour*/
 
+import java.time.*;
 import java.util.*;
 
 public class OrderManager {
     private List<Order> orders;
-    String orderFile = "Orders.pizza";
+    String orderFile = "PizzaApp/Orders.pizza";
     private List<Order> completedOrders;
     String completeOrderFile = "CompleteOrders.pizza"; 
     private int nextPriority;
@@ -26,12 +27,18 @@ public class OrderManager {
     }
 
     // Method to add an order to the list of active orders
-    public boolean addOrder(Order order) {
-        order.setPriority(nextPriority++);
-        boolean tempAddOrder = orders.add(order);
-         DataManager.writeOrderToFile(orders, orderFile);
-        return tempAddOrder;
+public boolean addOrder(Order order, int tempOrderCompletionTime) {    
+    order.setPriority(nextPriority++);
+    order.setCompletionTime(LocalDateTime.now().plusMinutes(tempOrderCompletionTime));
+    boolean tempAddOrder = orders.add(order);
+    if (orders.size() % 5 == 0) { // Check if 5 orders have been placed at the same time
+       for (Order o : orders) {
+         o.setCompletionTime(o.getCompletionTime().plusMinutes(20)); // Increase completion time by 10 minutes
+        }
     }
+    DataManager.writeOrderToFile(orders, orderFile);
+    return tempAddOrder;
+}
 
     // Method to remove an order from the list of active orders based on its priority
     public boolean removeOrder(int priority) {
