@@ -1,23 +1,36 @@
 package PizzaUI;
 import PizzaApp.Order;
+import PizzaApp.UiController;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 
 public class ActiveOrdersCard extends JPanel {
-    private JList<Order> activeOrdersList = new JList<>(); // Again, assuming a custom list model or override toString in Order class
+   private JTable orderTable;
+   private UiController uiController;
+   private MiddlePanel middlePanel;
+    private OrderTableModel orderTableModel;
 
-    public ActiveOrdersCard(List<Order> activeOrders) {
+    public ActiveOrdersCard(UiController uiController, MiddlePanel middlePanel) {
+        this.uiController = uiController;
+        this.middlePanel = middlePanel;
         setLayout(new BorderLayout());
         // Populate the list with active orders
-        activeOrdersList.setListData(activeOrders.toArray(new Order[0]));
-        add(new JScrollPane(activeOrdersList), BorderLayout.CENTER);
+        orderTableModel = new OrderTableModel(uiController.getAllOrders());
+        orderTable = new JTable(orderTableModel);
+
+        orderTable.getColumn("C").setCellRenderer(new ButtonRenderer());
+        orderTable.getColumn("C").setCellEditor(new ButtonEditor(new JCheckBox(),uiController,middlePanel,ButtonType.CORDER));
+        add(new JScrollPane(orderTable), BorderLayout.CENTER);
     }
 
     // Method to update the active orders list
     public void updateActiveOrdersList(List<Order> activeOrders) {
-        activeOrdersList.setListData(activeOrders.toArray(new Order[0]));
+        orderTableModel = new OrderTableModel(activeOrders);
+        orderTable.setModel(orderTableModel);
+        orderTable.getColumn("C").setCellRenderer(new ButtonRenderer());
+        orderTable.getColumn("C").setCellEditor(new ButtonEditor(new JCheckBox(),uiController,middlePanel,ButtonType.CORDER));
     }
 }
 
