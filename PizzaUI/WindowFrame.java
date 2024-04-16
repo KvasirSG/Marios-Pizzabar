@@ -50,15 +50,17 @@ public class WindowFrame extends JFrame {
         leftPanel.getManageMenuButton().addActionListener(e -> showManageMenuDialog());
 
         // Example handler for adding an order
-        rightPanel.getAddOrderButton().addActionListener(e -> {
-            // This is where you'd call uiController to add the selected pizzas to an order
-        });
+        rightPanel.getAddOrderButton().addActionListener(e -> showManageOrderDialog());
 
         // Other event handlers as needed
     }
     private void showManageMenuDialog() {
         ManageMenuDialog dialog = new ManageMenuDialog(this,uiController, middlePanel);
         // Add event listeners to dialog buttons for adding/removing pizzas
+        dialog.setVisible(true);
+    }
+    private void showManageOrderDialog(){
+        ManageOrderDialog dialog = new ManageOrderDialog(this,uiController,rightPanel);
         dialog.setVisible(true);
     }
 }
