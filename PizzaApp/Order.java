@@ -1,4 +1,4 @@
-// Class for creating orders, apply timestamp and ID
+package PizzaApp;// Class for creating orders, apply timestamp and ID
 // Accesses List<Pizza> for menu items on the order
 // by Duofour
 import java.io.Serializable;

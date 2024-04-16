@@ -1,10 +1,12 @@
+package PizzaApp;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Menu
 {
    private List<Pizza> pizzaList;
-   String pizzaMenuFile = "Menu.pizza";
+   String pizzaMenuFile = "PizzaApp/Menu.pizza";
 
    // Menu contructor 
    public Menu()
