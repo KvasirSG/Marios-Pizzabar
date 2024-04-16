@@ -6,12 +6,13 @@ import java.time.*;
 import java.util.*;
 
 public class Order implements Serializable {
-    private static final long serialVersionUID = 2L;
+   private static final long serialVersionUID = 2L;
    private static int nextID; 
    private long orderID;
    private List<Pizza> pizzas; 
    private LocalDateTime orderTime; 
    private int priority;
+   private LocalDateTime completionTime;
    
    // Constructor for the Order object, provides ID for the order as well as initializing the ArrayList "Pizzas"
    // Furthermore applies orderTime to the order for documentation
@@ -71,7 +72,14 @@ public class Order implements Serializable {
    public int getPriority() {
         return priority;
    }
+   public void setCompletionTime(LocalDateTime completionTime) {
+        this.completionTime = completionTime;
+    }
 
+   public LocalDateTime getCompletionTime() {
+        return completionTime;
+    }
+   
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -90,6 +98,14 @@ public class Order implements Serializable {
         sb.append("]");
         return sb.toString();
     }
-
+    // Method to get the sum of price for pizzas on the order
+    public double getSumPrice() {
+      double sum = 0.0;
+        for (Pizza pizza : pizzas) {
+            sum += pizza.getPrice();
+        }
+        return sum;
+    }
+    
 }
    
