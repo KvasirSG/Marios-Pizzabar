@@ -22,8 +22,7 @@ public class MenuCard extends JPanel {
         pizzaTable = new JTable(pizzaTableModel);
 
         // Setting the custom renderer and editor for the "Add" button column
-        pizzaTable.getColumn("Add").setCellRenderer(new ButtonRenderer());
-        pizzaTable.getColumn("Add").setCellEditor(new ButtonEditor(new JCheckBox(), uiController, rightPanel));
+        buttonRender(pizzaTable);
 
         add(new JScrollPane(pizzaTable), BorderLayout.CENTER);
     }
@@ -32,6 +31,10 @@ public class MenuCard extends JPanel {
     public void updatePizzaList(List<Pizza> pizzas) {
         pizzaTableModel = new PizzaTableModel(pizzas); // Re-initialize pizzaTableModel with new pizzas
         pizzaTable.setModel(pizzaTableModel);
+        buttonRender(pizzaTable);
+    }
+
+    public void buttonRender(JTable pizzaTable){
         pizzaTable.getColumn("Add").setCellRenderer(new ButtonRenderer());
         pizzaTable.getColumn("Add").setCellEditor(new ButtonEditor(new JCheckBox(), uiController, rightPanel));
     }

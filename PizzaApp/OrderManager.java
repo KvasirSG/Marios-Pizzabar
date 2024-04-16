@@ -8,7 +8,7 @@ public class OrderManager {
     private List<Order> orders;
     String orderFile = "PizzaApp/Orders.pizza";
     private List<Order> completedOrders;
-    String completeOrderFile = "CompleteOrders.pizza"; 
+    String completeOrderFile = "PizzaApp/CompleteOrders.pizza";
     private int nextPriority;
 
     // Constructor to initialize the OrderManager
@@ -21,7 +21,7 @@ public class OrderManager {
         this.completedOrders = new ArrayList<>();
         List<Order> tempCompleteOrderList = DataManager.readOrdersFromFile(completeOrderFile);
          if (tempCompleteOrderList != null){
-            orders.addAll(tempCompleteOrderList);
+            completedOrders.addAll(tempCompleteOrderList);
         }
         this.nextPriority = 1;
     }
