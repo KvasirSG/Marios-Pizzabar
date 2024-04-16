@@ -1,4 +1,4 @@
-/*OrderManager class intended to handle and manage the orders prior to use in the controller class
+package PizzaApp;/*OrderManager class intended to handle and manage the orders prior to use in the controller class
 Made by Duofour*/
 
 import java.time.*;
@@ -6,7 +6,7 @@ import java.util.*;
 
 public class OrderManager {
     private List<Order> orders;
-    String orderFile = "Orders.pizza";
+    String orderFile = "PizzaApp/Orders.pizza";
     private List<Order> completedOrders;
     String completeOrderFile = "CompleteOrders.pizza"; 
     private int nextPriority;

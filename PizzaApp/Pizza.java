@@ -1,3 +1,5 @@
+package PizzaApp;
+
 import java.io.Serializable;
 
 public class Pizza implements Serializable
