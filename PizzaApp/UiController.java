@@ -115,6 +115,24 @@ public class UiController implements iUiController{
         orderManager.addOrder(order, completionTime);
         clearPizzaList();
     }
+    
+        
+    /**
+     * Retrieves the sum of prices of all pizzas in each active order.
+     *
+     * @return A list containing the total price of each active order.
+     */
+    @Override
+    public List<Double> getOrderSums() {
+        List<Double> orderSums = new ArrayList<>();
+        List<Order> activeOrders = orderManager.getOrders();
+
+        for (Order order : activeOrders) {
+            orderSums.add(order.getSumPrice());
+        }
+
+        return orderSums;
+    }
 
     /**
      * Removes an order by its priority.
