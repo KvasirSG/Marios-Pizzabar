@@ -60,11 +60,11 @@ public boolean addOrder(Order order, int tempOrderCompletionTime) {
         for (Order order : orders) {
             if (order.getPriority() == priority) {
                 boolean removed = orders.remove(order);
-                DataManager.writeOrderToFile(orders, completeOrderFile);
                 if (removed) {
                     completedOrders.add(order);
                     updatePriorities();
                 }
+                DataManager.writeOrderToFile(completedOrders, completeOrderFile);
                 return removed; 
             }
         }
