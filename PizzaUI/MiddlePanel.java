@@ -18,7 +18,7 @@ public class MiddlePanel extends JPanel {
         setLayout(cardLayout);
         // Initialize cards with dummy or initial data
         menuCard = new MenuCard(uiController, rightPanel); // Ideally, fetch the real data
-        activeOrdersCard = new ActiveOrdersCard(uiController.getAllOrders());
+        activeOrdersCard = new ActiveOrdersCard(uiController,this);
         completedOrdersCard = new CompletedOrdersCard(uiController.getAllCompletedOrders());
 
         add(menuCard, "Menu");
