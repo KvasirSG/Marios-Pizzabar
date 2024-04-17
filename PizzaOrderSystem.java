@@ -1,6 +1,6 @@
 import PizzaApp.UiController;
 import PizzaUI.WindowFrame;
-
+import com.formdev.flatlaf.*;
 import javax.swing.*;
 
 /**
@@ -11,7 +11,7 @@ public class PizzaOrderSystem {
     public static void main(String[] args) {
         // making an instance of the UiController
         UiController uiController = new UiController();
-
+        FlatDarkLaf.setup();
         SwingUtilities.invokeLater(() -> {
             WindowFrame mainFrame = new WindowFrame(uiController);
             mainFrame.setVisible(true);
