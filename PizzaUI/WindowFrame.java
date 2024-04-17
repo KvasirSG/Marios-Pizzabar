@@ -30,7 +30,7 @@ public class WindowFrame extends JFrame {
         add(middlePanel, BorderLayout.CENTER);
         add(rightPanel, BorderLayout.EAST);
 
-        setSize(800, 600); // Set the initial size of the frame
+        setSize(1500, 600); // Set the initial size of the frame
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     private void attachEventHandlers() {
