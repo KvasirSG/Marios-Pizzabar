@@ -9,7 +9,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Objects;
-enum ButtonType {PIZZA,CORDER, RORDER}
+enum ButtonType {PIZZA,RPIZZA,CORDER, RORDER}
 public class ButtonEditor extends DefaultCellEditor {
     protected JButton button;
     private boolean isPushed;
@@ -24,11 +24,11 @@ public class ButtonEditor extends DefaultCellEditor {
 
     private ButtonType buttonType;
 
-    public ButtonEditor(JCheckBox checkBox, UiController uiController, RightPanel rightPanel) {
+    public ButtonEditor(JCheckBox checkBox, UiController uiController, RightPanel rightPanel, ButtonType buttonType) {
         super(checkBox);
         this.uiController = uiController;
         this.rightPanel = rightPanel;
-        this.buttonType= ButtonType.PIZZA;
+        this.buttonType= buttonType;
         button = new JButton();
         button.setOpaque(true);
         button.addActionListener(new ActionListener() {
@@ -46,7 +46,13 @@ public class ButtonEditor extends DefaultCellEditor {
         this.buttonType = buttonType;
         this.middlePanel = middlePanel;
         button = new JButton();
-        button.setOpaque(true);
+        button.setOpaque(false);
+        button.setContentAreaFilled(true);
+        if (buttonType == ButtonType.CORDER){
+            button.setBackground(Color.green);
+        } else if (buttonType == ButtonType.RORDER){
+            button.setBackground(Color.red);
+        }
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -60,7 +66,7 @@ public class ButtonEditor extends DefaultCellEditor {
     public Component getTableCellEditorComponent(JTable table, Object value,
                                                  boolean isSelected, int row, int column) {
         label = (value == null) ? "" : value.toString();
-        if (buttonType == ButtonType.PIZZA){
+        if (buttonType == ButtonType.PIZZA || buttonType == ButtonType.RPIZZA){
             PizzaTableModel model = (PizzaTableModel) table.getModel();
             this.pizza = model.getPizzaAt(row);
         } else if (buttonType==ButtonType.CORDER||buttonType==ButtonType.RORDER){
@@ -80,16 +86,25 @@ public class ButtonEditor extends DefaultCellEditor {
             if (buttonType == ButtonType.PIZZA){
                 uiController.addPizzaToList(pizza.getPizzaID());
                 rightPanel.updateSelectedPizzaList(uiController.getPizzaList());
+                JOptionPane.showMessageDialog(button, pizza.getName()+" Tilføjet til order");
+            }
+            if (buttonType==ButtonType.RPIZZA){
+                uiController.removePizzaFromList(pizza.getPizzaID());
+                rightPanel.updateSelectedPizzaList(uiController.getPizzaList());
+                JOptionPane.showMessageDialog(button, pizza.getName()+" Fjernet fra order");
             }
             if (buttonType == ButtonType.CORDER){
-                uiController.completeOrder(order.getPriority());
+                uiController.completeOrder(order.getOrderID());
                 middlePanel.updateAOrders();
+                JOptionPane.showMessageDialog(button, order.getOrderID()+"  Fuldført");
             }
             if (buttonType == ButtonType.RORDER){
-                uiController.removePizzaOrder(order.getPriority());
+                uiController.removePizzaOrder(order.getOrderID());
+                middlePanel.updateAOrders();
+                JOptionPane.showMessageDialog(button, order.getOrderID()+" Fjernet");
             }
 
-            JOptionPane.showMessageDialog(button, label + ": Ouch!");
+
         }
         isPushed = false;
         return label;
