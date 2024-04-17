@@ -12,8 +12,8 @@ public interface iUiController {
     public Pizza getPizzaFromMenu(int PizzaID);
     public List<Pizza> getPizzaMenu();
     public void addPizzaOrder(int completionTime);
-    public void removePizzaOrder(int priority);
-    public void completeOrder(int priority);
+    public void removePizzaOrder(long orderID);
+    public void completeOrder(long orderID);
     public List<Order> getAllOrders();
     public List<Order> getAllCompletedOrders();
     public List<Double> getOrderSums();
