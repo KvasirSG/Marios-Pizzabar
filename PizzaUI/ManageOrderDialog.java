@@ -12,13 +12,16 @@ public class ManageOrderDialog extends JDialog {
     private RightPanel rightPanel;
 
     public ManageOrderDialog(JFrame parent, UiController uiController, RightPanel rightPanel){
-        super(parent,"Manage Order", true);
+        super(parent,"Administrer Order", true);
         this.uiController=uiController;
         this.rightPanel=rightPanel;
-        setSize(400,300);
+        setSize(400,100);
         setLayout(new GridLayout(0,2));
-        add(new JLabel("Add estimated pickup time:"));
+        add(new JLabel("Tilføj forventet afhentningstid:"));
         add(minuteSpinner);
+        add(new JPanel()); // Add an empty JPanel as a placeholder
+        add(new JPanel()); // Add an empty JPanel as a placeholder
+        add(new JPanel()); // Add an empty JPanel as a placeholder
         add(addButton);
         attachEventHandlers();
     }
@@ -29,7 +32,7 @@ public class ManageOrderDialog extends JDialog {
             int completionTime = (int) temp;
             uiController.addPizzaOrder(completionTime);
             rightPanel.updateSelectedPizzaList(uiController.getPizzaList());
-            JOptionPane.showMessageDialog(this,"Order added successfully!");
+            JOptionPane.showMessageDialog(this,"Ordre tilføjet med succes!");
         });
     }
 }
