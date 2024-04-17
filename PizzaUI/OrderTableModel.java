@@ -4,12 +4,14 @@ import PizzaApp.Order;
 import PizzaApp.Pizza;
 
 import javax.swing.table.AbstractTableModel;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
 public class OrderTableModel extends AbstractTableModel {
     private final List<Order> orders;
-    private final String[] columnNames = {"Priority", "Pizza Names","Price","Completion Time","C","R"};
+    private final String[] columnNames = {"Prioritet", "Pizzanavne","Total pris","Fuldførelsestid","C","R"};
     public OrderTableModel(List<Order> orders){
         this.orders = orders;
     }
@@ -36,9 +38,14 @@ public class OrderTableModel extends AbstractTableModel {
             case 0: return order.getPriority();
             case 1: return getPizzaNames(order.getPizzas());
             case 2: return order.getSumPrice();
-            case 3: return order.getCompletionTime();
-            case 4: return "C"; // button text
-            case 5: return "R"; // button text
+            case 3:
+                LocalDateTime temp = order.getCompletionTime();
+                // Create a formatter for the pattern "HH:mm"
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+                // Format the LocalDateTime instance
+                return temp.format(formatter);
+            case 4: return "Fuldfør"; // button text
+            case 5: return "Aflys"; // button text
             default: return null;
         }
     }
