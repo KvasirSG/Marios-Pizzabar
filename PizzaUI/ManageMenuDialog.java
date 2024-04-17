@@ -15,24 +15,27 @@ public class ManageMenuDialog extends JDialog {
     private MiddlePanel middlePanel;
 
     public ManageMenuDialog(JFrame parent, UiController controller, MiddlePanel middlePanel) {
-        super(parent, "Manage Menu", true);
+        super(parent, "Administrer menu", true);
         this.middlePanel = middlePanel;
         this.uiController = controller;
         setSize(400, 300);
         setLayout(new GridLayout(0, 2));
 
         // Adding components for adding a pizza
-        add(new JLabel("Name:"));
+        add(new JLabel("Navn:"));
         add(nameField);
-        add(new JLabel("Ingredients:"));
+        add(new JLabel("ingredienser:"));
         add(ingredientField);
-        add(new JLabel("Price:"));
+        add(new JLabel("Pris:"));
         add(priceSpinner);
+        add(new JPanel()); // Add an empty JPanel as a placeholder
         add(addButton);
-
+        add(new JPanel()); // Add an empty JPanel as a placeholder
+        add(new JPanel()); // Add an empty JPanel as a placeholder
         // Component for removing a pizza by ID
-        add(new JLabel("Pizza ID to Remove:"));
+        add(new JLabel("Pizza ID til at Fjerne Pizza:"));
         add(removeIdField);
+        add(new JPanel()); // Add an empty JPanel as a placeholder
         add(removeButton);
 
         attachEventHandlers();
