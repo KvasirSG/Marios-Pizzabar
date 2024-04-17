@@ -18,7 +18,7 @@ public class MenuCard extends JPanel {
         this.rightPanel = rightPanel;
         this.uiController = uiController;
         setLayout(new BorderLayout());
-        pizzaTableModel = new PizzaTableModel(uiController.getPizzaMenu());
+        pizzaTableModel = new PizzaTableModel(uiController.getPizzaMenu(),ButtonType.PIZZA);
         pizzaTable = new JTable(pizzaTableModel);
 
         // Setting the custom renderer and editor for the "Add" button column
@@ -29,14 +29,14 @@ public class MenuCard extends JPanel {
 
     // Method to update the pizza list if the menu changes
     public void updatePizzaList(List<Pizza> pizzas) {
-        pizzaTableModel = new PizzaTableModel(pizzas); // Re-initialize pizzaTableModel with new pizzas
+        pizzaTableModel = new PizzaTableModel(pizzas, ButtonType.PIZZA); // Re-initialize pizzaTableModel with new pizzas
         pizzaTable.setModel(pizzaTableModel);
         buttonRender(pizzaTable);
     }
 
     public void buttonRender(JTable pizzaTable){
-        pizzaTable.getColumn("Add").setCellRenderer(new ButtonRenderer());
-        pizzaTable.getColumn("Add").setCellEditor(new ButtonEditor(new JCheckBox(), uiController, rightPanel));
+        pizzaTable.getColumn("Tilføj").setCellRenderer(new ButtonRenderer());
+        pizzaTable.getColumn("Tilføj").setCellEditor(new ButtonEditor(new JCheckBox(), uiController, rightPanel,ButtonType.PIZZA));
     }
 }
 
