@@ -68,7 +68,12 @@ public class PizzaTableModel extends AbstractTableModel {
 
     @Override
     public boolean isCellEditable(int rowIndex, int columnIndex) {
-        return columnIndex == 4; // Only the "Add" button column is editable
+        if (buttonType== ButtonType.RPIZZA){
+            return columnIndex == 3; // Only the "Remove" button column is editable
+        } else {
+            return columnIndex == 4; // Only the "Add" button column is editable
+        }
+
     }
 }
 
