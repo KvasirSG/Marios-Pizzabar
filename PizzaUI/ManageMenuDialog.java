@@ -47,16 +47,18 @@ public class ManageMenuDialog extends JDialog {
             String ingredients = ingredientField.getText();
             double price = (double) priceSpinner.getValue();
             uiController.addPizzaToMenu(name, ingredients, price);
-            JOptionPane.showMessageDialog(this, "Pizza added successfully!");
             middlePanel.updateMenu();
+            JOptionPane.showMessageDialog(this, "Pizza added successfully!");
+            this.dispose();
         });
 
         removeButton.addActionListener(e -> {
             try {
                 int pizzaID = Integer.parseInt(removeIdField.getText());
                 uiController.removePizzaFromMenu(pizzaID);
-                JOptionPane.showMessageDialog(this, "Pizza removed successfully!");
                 middlePanel.updateMenu();
+                JOptionPane.showMessageDialog(this, "Pizza removed successfully!");
+                this.dispose();
             } catch (NumberFormatException ex) {
                 JOptionPane.showMessageDialog(this, "Invalid Pizza ID", "Error", JOptionPane.ERROR_MESSAGE);
             }

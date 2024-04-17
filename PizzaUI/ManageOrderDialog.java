@@ -33,6 +33,7 @@ public class ManageOrderDialog extends JDialog {
             uiController.addPizzaOrder(completionTime);
             rightPanel.updateSelectedPizzaList(uiController.getPizzaList());
             JOptionPane.showMessageDialog(this,"Ordre tilføjet med succes!");
+            this.dispose();
         });
     }
 }
