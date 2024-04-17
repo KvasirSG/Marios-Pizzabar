@@ -6,17 +6,20 @@ import java.awt.*;
 import java.util.List;
 
 public class CompletedOrdersCard extends JPanel {
-    private JList<Order> completedOrdersList = new JList<>();
+    private JTable orderTable;
+    private OrderTableModel orderTableModel;
 
     public CompletedOrdersCard(List<Order> completedOrders) {
         setLayout(new BorderLayout());
-        // Initialize the list with completed orders
-        completedOrdersList.setListData(completedOrders.toArray(new Order[0]));
-        add(new JScrollPane(completedOrdersList), BorderLayout.CENTER);
+        /// Populate the list with active orders
+        orderTableModel = new OrderTableModel(completedOrders,ButtonType.CPORDER);
+        orderTable = new JTable(orderTableModel);
+        add(new JScrollPane(orderTable), BorderLayout.CENTER);
     }
 
     // Method to refresh the list of completed orders
     public void updateCompletedOrdersList(List<Order> completedOrders) {
-        completedOrdersList.setListData(completedOrders.toArray(new Order[0]));
+        orderTableModel = new OrderTableModel(completedOrders,ButtonType.CPORDER);
+        orderTable.setModel(orderTableModel);
     }
 }
