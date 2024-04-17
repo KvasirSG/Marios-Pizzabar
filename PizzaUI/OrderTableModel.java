@@ -11,9 +11,16 @@ import java.util.List;
 
 public class OrderTableModel extends AbstractTableModel {
     private final List<Order> orders;
-    private final String[] columnNames = {"Prioritet", "Pizzanavne","Total pris","Fuldførelsestid","C","R"};
-    public OrderTableModel(List<Order> orders){
+    private final String[] columnNames;
+    private ButtonType buttonType;
+    public OrderTableModel(List<Order> orders, ButtonType buttonType){
         this.orders = orders;
+        this.buttonType = buttonType;
+        if (buttonType == ButtonType.CPORDER){
+            columnNames = new String[]{"Order ID", "Pizzanavne", "Total pris", "Order Tid"};
+        } else {
+            columnNames = new String[]{"Prioritet", "Pizzanavne", "Total pris", "Fuldførelsestid", "C", "R"};
+        }
     }
 
     @Override
@@ -34,20 +41,37 @@ public class OrderTableModel extends AbstractTableModel {
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         Order order = orders.get(rowIndex);
-        switch (columnIndex){
-            case 0: return order.getPriority();
-            case 1: return getPizzaNames(order.getPizzas());
-            case 2: return order.getSumPrice();
-            case 3:
-                LocalDateTime temp = order.getCompletionTime();
-                // Create a formatter for the pattern "HH:mm"
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
-                // Format the LocalDateTime instance
-                return temp.format(formatter);
-            case 4: return "Fuldfør"; // button text
-            case 5: return "Aflys"; // button text
-            default: return null;
+        if (buttonType == ButtonType.CPORDER){
+            switch (columnIndex){
+                case 0: return order.getOrderID();
+                case 1: return getPizzaNames(order.getPizzas());
+                case 2: return order.getSumPrice();
+                case 3:
+                    LocalDateTime temp = order.getOrderTime();
+                    // Create a formatter for the pattern "yyyy/MM/dd - HH:mm:ss"
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd - HH:mm:ss");
+                    // Format the LocalDateTime instance
+                    return temp.format(formatter);
+                default: return null;
+            }
         }
+        else {
+            switch (columnIndex){
+                case 0: return order.getPriority();
+                case 1: return getPizzaNames(order.getPizzas());
+                case 2: return order.getSumPrice();
+                case 3:
+                    LocalDateTime temp = order.getCompletionTime();
+                    // Create a formatter for the pattern "HH:mm"
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+                    // Format the LocalDateTime instance
+                    return temp.format(formatter);
+                case 4: return "Fuldfør"; // button text
+                case 5: return "Aflys"; // button text
+                default: return null;
+            }
+        }
+
     }
 
     public Order getOrderAt(int rowIndex){
