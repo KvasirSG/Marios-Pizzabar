@@ -2,10 +2,10 @@ package PizzaUI;
 import javax.swing.*;
 
 public class LeftPanel extends JPanel {
-    private JButton viewMenuButton = new JButton("View Menu");
-    private JButton viewActiveOrdersButton = new JButton("View Active Orders");
-    private JButton viewCompletedOrdersButton = new JButton("View Completed Orders");
-    private JButton manageMenuButton = new JButton("Manage Menu");
+    private JButton viewMenuButton = new JButton("Se menu");
+    private JButton viewActiveOrdersButton = new JButton("Se aktive ordrer");
+    private JButton viewCompletedOrdersButton = new JButton("Se fuldførte ordrer");
+    private JButton manageMenuButton = new JButton("Administrer menu");
 
     public LeftPanel() {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
