@@ -135,22 +135,22 @@ public class UiController implements iUiController{
     }
 
     /**
-     * Removes an order by its priority.
+     * Removes an order by its ID.
      *
-     * @param priority The priority of the order to remove.
+     * @param orderID The ID of the order to remove.
      */
     @Override
-    public void removePizzaOrder(int priority) {
-        orderManager.removeOrder(priority);
+    public void removePizzaOrder(long orderID) {
+        orderManager.removeOrder(orderID);
     }
 
     /**
      * method to complete an order.
-     * @param priority
+     * @param orderID
      */
     @Override
-    public void completeOrder(int priority) {
-        orderManager.completeOrder(priority);
+    public void completeOrder(long orderID) {
+        orderManager.completeOrder(orderID);
     }
 
     /**
