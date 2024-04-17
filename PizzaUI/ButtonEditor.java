@@ -9,7 +9,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Objects;
-enum ButtonType {PIZZA,RPIZZA,CORDER, RORDER}
+enum ButtonType {PIZZA,RPIZZA,CORDER, RORDER, AORDER,CPORDER}
 public class ButtonEditor extends DefaultCellEditor {
     protected JButton button;
     private boolean isPushed;
