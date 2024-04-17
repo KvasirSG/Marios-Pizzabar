@@ -13,21 +13,22 @@ public class OrderManager {
 
     // Constructor to initialize the OrderManager
     public OrderManager() {
+        this.nextPriority = 1;
         this.orders = new ArrayList<>();
         List<Order> tempOrderList = DataManager.readOrdersFromFile(orderFile);
          if (tempOrderList != null){
             orders.addAll(tempOrderList);
+            updatePriorities();
         }
         this.completedOrders = new ArrayList<>();
         List<Order> tempCompleteOrderList = DataManager.readOrdersFromFile(completeOrderFile);
          if (tempCompleteOrderList != null){
             completedOrders.addAll(tempCompleteOrderList);
         }
-        this.nextPriority = 1;
     }
 
     // Method to add an order to the list of active orders
-public boolean addOrder(Order order, int tempOrderCompletionTime) {    
+public boolean addOrder(Order order, int tempOrderCompletionTime) {
     order.setPriority(nextPriority++);
     order.setCompletionTime(LocalDateTime.now().plusMinutes(tempOrderCompletionTime));
     boolean tempAddOrder = orders.add(order);
