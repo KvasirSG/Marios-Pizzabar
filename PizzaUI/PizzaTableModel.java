@@ -7,10 +7,21 @@ import java.util.List;
 
 public class PizzaTableModel extends AbstractTableModel {
     private final List<Pizza> pizzas;
-    private final String[] columnNames = {"ID", "Name", "Ingredients", "Price", "Add"};
+    private final String[] columnNames;
+    private String buttonOption;
+    private ButtonType buttonType;
 
-    public PizzaTableModel(List<Pizza> pizzas) {
+    public PizzaTableModel(List<Pizza> pizzas, ButtonType buttonType) {
         this.pizzas = pizzas;
+        this.buttonType=buttonType;
+        if (buttonType == ButtonType.RPIZZA){
+            buttonOption = "Fjern";
+            this.columnNames = new String[]{"Nummer", "Navn", "Pris", buttonOption};
+        } else {
+            buttonOption = "Tilføj";
+            this.columnNames = new String[]{"Nummer", "Navn", "ingredienser", "Pris", buttonOption};
+        }
+
     }
 
     public Pizza getPizzaAt(int rowIndex) {
@@ -35,13 +46,23 @@ public class PizzaTableModel extends AbstractTableModel {
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         Pizza pizza = pizzas.get(rowIndex);
-        switch (columnIndex) {
-            case 0: return pizza.getPizzaID();
-            case 1: return pizza.getName();
-            case 2: return pizza.getIngredient();
-            case 3: return pizza.getPrice();
-            case 4: return "Add"; // Button text
-            default: return null;
+        if (buttonType==ButtonType.RPIZZA){
+            switch (columnIndex) {
+                case 0: return pizza.getPizzaID();
+                case 1: return pizza.getName();
+                case 2: return pizza.getPrice();
+                case 3: return buttonOption; // Button text
+                default: return null;
+            }
+        } else {
+            switch (columnIndex) {
+                case 0: return pizza.getPizzaID();
+                case 1: return pizza.getName();
+                case 2: return pizza.getIngredient();
+                case 3: return pizza.getPrice();
+                case 4: return buttonOption; // Button text
+                default: return null;
+            }
         }
     }
 
