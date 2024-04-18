@@ -4,6 +4,10 @@ import PizzaApp.UiController;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * A dialog window for managing the pizza menu. Allows the user to add new pizzas
+ * to the menu and remove existing ones by providing pizza details and pizza ID respectively.
+ */
 public class ManageMenuDialog extends JDialog {
     private JTextField nameField = new JTextField(10);
     private JTextField ingredientField = new JTextField(10);
@@ -11,9 +15,16 @@ public class ManageMenuDialog extends JDialog {
     private JTextField removeIdField = new JTextField(10);
     private JButton addButton = new JButton("Tilføj Pizza");
     private JButton removeButton = new JButton("Fjern Pizza");
-    private UiController uiController; // Reference to the controller
-    private MiddlePanel middlePanel;
+    private UiController uiController; // Reference to the controller for performing menu operations.
+    private MiddlePanel middlePanel; // Reference to the MiddlePanel for UI updates.
 
+    /**
+     * Constructs a ManageMenuDialog.
+     *
+     * @param parent The parent frame to which this dialog is attached.
+     * @param controller The UiController for handling actions.
+     * @param middlePanel The MiddlePanel for updating the UI based on actions performed.
+     */
     public ManageMenuDialog(JFrame parent, UiController controller, MiddlePanel middlePanel) {
         super(parent, "Administrer menu", true);
         this.middlePanel = middlePanel;
@@ -41,24 +52,32 @@ public class ManageMenuDialog extends JDialog {
         attachEventHandlers();
     }
 
+    /**
+     * Attaches event handlers to the add and remove buttons.
+     */
     private void attachEventHandlers() {
+        // Handler for adding a pizza
         addButton.addActionListener(e -> {
+            // Retrieve pizza details from fields and spinner
             String name = nameField.getText();
             String ingredients = ingredientField.getText();
             double price = (double) priceSpinner.getValue();
+            // Invoke controller to add pizza and update the UI
             uiController.addPizzaToMenu(name, ingredients, price);
             middlePanel.updateMenu();
             JOptionPane.showMessageDialog(this, "Pizza tilføjet til menuen!");
-            this.dispose();
+            this.dispose(); // Close the dialog after action
         });
 
+        // Handler for removing a pizza
         removeButton.addActionListener(e -> {
             try {
                 int pizzaID = Integer.parseInt(removeIdField.getText());
+                // Invoke controller to remove pizza and update the UI
                 uiController.removePizzaFromMenu(pizzaID);
                 middlePanel.updateMenu();
                 JOptionPane.showMessageDialog(this, "Pizza Fjernet fra menuen!");
-                this.dispose();
+                this.dispose(); // Close the dialog after action
             } catch (NumberFormatException ex) {
                 JOptionPane.showMessageDialog(this, "Invalid Pizza ID", "Error", JOptionPane.ERROR_MESSAGE);
             }

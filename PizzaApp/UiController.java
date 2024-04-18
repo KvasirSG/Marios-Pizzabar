@@ -8,6 +8,8 @@ import java.util.List;
  * managing the UI's interactions with the pizza menu and the list of selected pizzas.
  * This class is responsible for handling actions such as adding or removing pizzas from the menu,
  * and managing the list of pizzas selected by the user.
+ *
+ * @author Kenneh Heimann, Sebastian Dufour
  */
 public class UiController implements iUiController{
     private List<Pizza> selectedPizzaList;
@@ -15,7 +17,7 @@ public class UiController implements iUiController{
     private OrderManager orderManager;
 
     /**
-     * Constructs a new UiController instance, initializing the list of selected pizzas.
+     * Constructs a new UiController instance, initializing the list of selected pizzas, menu and orderManager
      */
     public UiController(){
         selectedPizzaList = new ArrayList<>();

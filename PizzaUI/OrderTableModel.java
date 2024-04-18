@@ -9,16 +9,30 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A custom table model for displaying orders in the application. This model supports
+ * displaying orders with or without action buttons based on the specified ButtonType.
+ * @author Kenneth Heimann
+ */
 public class OrderTableModel extends AbstractTableModel {
-    private final List<Order> orders;
-    private final String[] columnNames;
-    private ButtonType buttonType;
+    private final List<Order> orders; // List of orders to display
+    private final String[] columnNames; // Names of the columns in the table
+    private ButtonType buttonType; // Indicates whether the table should include action buttons
+
+    /**
+     * Constructs an OrderTableModel with a list of orders and a button type.
+     *
+     * @param orders The list of orders to be displayed in the table.
+     * @param buttonType Specifies the type of buttons (if any) included in the table.
+     */
     public OrderTableModel(List<Order> orders, ButtonType buttonType){
         this.orders = orders;
         this.buttonType = buttonType;
-        if (buttonType == ButtonType.CPORDER){
+        // Define column names based on the presence or absence of action buttons
+        if (buttonType == ButtonType.NONE){
             columnNames = new String[]{"Order ID", "Pizzanavne", "Total pris", "Order Tid"};
         } else {
+            // Includes columns for action buttons
             columnNames = new String[]{"Prioritet", "Pizzanavne", "Total pris", "Fuldførelsestid", "C", "R"};
         }
     }
@@ -41,7 +55,8 @@ public class OrderTableModel extends AbstractTableModel {
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         Order order = orders.get(rowIndex);
-        if (buttonType == ButtonType.CPORDER){
+        // Switch based on buttonType to determine what values to return for each column
+        if (buttonType == ButtonType.NONE){
             switch (columnIndex){
                 case 0: return order.getOrderID();
                 case 1: return getPizzaNames(order.getPizzas());
@@ -80,8 +95,16 @@ public class OrderTableModel extends AbstractTableModel {
 
     @Override
     public boolean isCellEditable(int rowIndex, int columnIndex){
+        // Only allow editing (clicking) for columns with buttons
         return columnIndex ==4 || columnIndex ==5;
     }
+
+    /**
+     * Gets a list of pizza names from a list of Pizza objects.
+     *
+     * @param pizzas The list of pizzas.
+     * @return A list of pizza names.
+     */
     public List<String> getPizzaNames(List<Pizza> pizzas){
         List<String> pizzanames = new ArrayList<>();
         for (Pizza pizza:pizzas){
