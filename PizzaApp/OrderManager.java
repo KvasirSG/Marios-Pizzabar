@@ -8,26 +8,27 @@ public class OrderManager {
     private List<Order> orders;
     String orderFile = "PizzaApp/Orders.pizza";
     private List<Order> completedOrders;
-    String completeOrderFile = "CompleteOrders.pizza"; 
+    String completeOrderFile = "PizzaApp/CompleteOrders.pizza";
     private int nextPriority;
 
     // Constructor to initialize the OrderManager
     public OrderManager() {
+        this.nextPriority = 1;
         this.orders = new ArrayList<>();
         List<Order> tempOrderList = DataManager.readOrdersFromFile(orderFile);
          if (tempOrderList != null){
             orders.addAll(tempOrderList);
+            updatePriorities();
         }
         this.completedOrders = new ArrayList<>();
         List<Order> tempCompleteOrderList = DataManager.readOrdersFromFile(completeOrderFile);
          if (tempCompleteOrderList != null){
-            orders.addAll(tempCompleteOrderList);
+            completedOrders.addAll(tempCompleteOrderList);
         }
-        this.nextPriority = 1;
     }
 
     // Method to add an order to the list of active orders
-public boolean addOrder(Order order, int tempOrderCompletionTime) {    
+public boolean addOrder(Order order, int tempOrderCompletionTime) {
     order.setPriority(nextPriority++);
     order.setCompletionTime(LocalDateTime.now().plusMinutes(tempOrderCompletionTime));
     boolean tempAddOrder = orders.add(order);
@@ -40,10 +41,10 @@ public boolean addOrder(Order order, int tempOrderCompletionTime) {
     return tempAddOrder;
 }
 
-    // Method to remove an order from the list of active orders based on its priority
-    public boolean removeOrder(int priority) {
+    // Method to remove an order from the list of active orders based on its ID
+    public boolean removeOrder(long orderID) {
         for (Order order : orders) {
-            if (order.getPriority() == priority) {
+            if (order.getOrderID() == orderID) {
                 boolean removed = orders.remove(order);
                 DataManager.writeOrderToFile(orders, orderFile);
                 if (removed) {
@@ -55,16 +56,16 @@ public boolean addOrder(Order order, int tempOrderCompletionTime) {
         return false; 
     }
 
-    // Method to complete an order based on its priority
-    public boolean completeOrder(int priority) {
+    // Method to complete an order based on its ID
+    public boolean completeOrder(long orderID) {
         for (Order order : orders) {
-            if (order.getPriority() == priority) {
+            if (order.getOrderID() == orderID) {
                 boolean removed = orders.remove(order);
-                DataManager.writeOrderToFile(orders, completeOrderFile);
                 if (removed) {
                     completedOrders.add(order);
                     updatePriorities();
                 }
+                DataManager.writeOrderToFile(completedOrders, completeOrderFile);
                 return removed; 
             }
         }
