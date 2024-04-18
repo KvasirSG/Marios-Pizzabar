@@ -2,6 +2,10 @@ package PizzaApp;
 
 import java.io.Serializable;
 
+/**
+ * Represents a pizza in the Pizza application, including details such as ID, name, ingredient, and price.
+ * @author Nikolaj Pirum
+ */
 public class Pizza implements Serializable
 {
    private static final long serialVersionUID = 1L;
@@ -10,7 +14,14 @@ public class Pizza implements Serializable
    private String ingredient;
    private double price;
 
-   // constructor
+   /**
+    * Constructs a new Pizza object with the specified ID, name, ingredient, and price.
+    *
+    * @param pizzaID The unique identifier for the pizza.
+    * @param name The name of the pizza.
+    * @param ingredient The main ingredient of the pizza.
+    * @param price The price of the pizza.
+    */
    public Pizza(int pizzaID, String name, String ingredient, double price) {
       this.pizzaID = pizzaID;
       this.name = name;
@@ -18,42 +29,81 @@ public class Pizza implements Serializable
       this.price = price;
    }
 
-   // method for printing pizza number
+   /**
+    * Gets the pizza's ID.
+    *
+    * @return The pizza's unique identifier.
+    */
    public int getPizzaID() 
    {
       return pizzaID;
    }
-   // method for printing pizza name
+
+   /**
+    * Gets the name of the pizza.
+    *
+    * @return The name of the pizza.
+    */
    public String getName() 
    {
       return name;
    }
-   //method for setting pizza name 
+
+   /**
+    * Sets the name of the pizza.
+    *
+    * @param name The new name for the pizza.
+    */
    public void setName(String name) 
    {
       this.name = name;
    }
-   // method for printing pizza ingrediens 
+
+   /**
+    * Gets the main ingredient of the pizza.
+    *
+    * @return The pizza's main ingredient.
+    */
    public String getIngredient() 
    {
       return ingredient; 
    }
-   // method setting pizza ingrediens
+
+   /**
+    * Sets the main ingredient of the pizza.
+    *
+    * @param ingredient The new main ingredient for the pizza.
+    */
    public void setIngredient(String ingredient) 
    {
       this.ingredient = ingredient;
    }
-   // method for printing pizza price
+
+   /**
+    * Gets the price of the pizza.
+    *
+    * @return The price of the pizza.
+    */
    public double getPrice() 
    {
       return price;
    }
-   // method for setting pizza price
+
+   /**
+    * Sets the price of the pizza.
+    *
+    * @param price The new price for the pizza.
+    */
    public void setPrice(double price) 
    {
       this.price = price;
    }
 
+   /**
+    * Returns a string representation of the pizza, formatted as an array containing the ID, name, ingredient, and price.
+    *
+    * @return A string representation of the pizza.
+    */
    @Override
    public String toString() {
       // Mimics an array format: [pizzaID, name, ingredient, price]
