@@ -7,7 +7,7 @@ import java.awt.*;
 
 public class ManageOrderDialog extends JDialog {
     private JSpinner minuteSpinner = new JSpinner(new SpinnerNumberModel(10, 5, 100.0, 1));
-    private JButton addButton = new JButton("Make Order");
+    private JButton addButton = new JButton("Lav Order");
     private UiController uiController; // Reference to the controller
     private RightPanel rightPanel;
 
