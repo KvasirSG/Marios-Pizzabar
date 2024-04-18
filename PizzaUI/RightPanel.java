@@ -69,6 +69,8 @@ public class RightPanel extends JPanel {
     public void updateSelectedPizzaList(List<Pizza> pizzas){
         if (!uiController.getPizzaList().isEmpty()){
             addOrderButton.setEnabled(true);
+        } else {
+            addOrderButton.setEnabled(false);
         }
         pizzaTableModel = new PizzaTableModel(pizzas, ButtonType.RPIZZA); // Re-initialize pizzaTableModel with new pizzas
         pizzaTable.setModel(pizzaTableModel);
