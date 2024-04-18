@@ -9,8 +9,8 @@ public class ManageMenuDialog extends JDialog {
     private JTextField ingredientField = new JTextField(10);
     private JSpinner priceSpinner = new JSpinner(new SpinnerNumberModel(0.0, 0.0, 100.0, 0.5));
     private JTextField removeIdField = new JTextField(10);
-    private JButton addButton = new JButton("Add Pizza");
-    private JButton removeButton = new JButton("Remove Pizza");
+    private JButton addButton = new JButton("Tilføj Pizza");
+    private JButton removeButton = new JButton("Fjern Pizza");
     private UiController uiController; // Reference to the controller
     private MiddlePanel middlePanel;
 
@@ -48,7 +48,7 @@ public class ManageMenuDialog extends JDialog {
             double price = (double) priceSpinner.getValue();
             uiController.addPizzaToMenu(name, ingredients, price);
             middlePanel.updateMenu();
-            JOptionPane.showMessageDialog(this, "Pizza added successfully!");
+            JOptionPane.showMessageDialog(this, "Pizza tilføjet til menuen!");
             this.dispose();
         });
 
@@ -57,7 +57,7 @@ public class ManageMenuDialog extends JDialog {
                 int pizzaID = Integer.parseInt(removeIdField.getText());
                 uiController.removePizzaFromMenu(pizzaID);
                 middlePanel.updateMenu();
-                JOptionPane.showMessageDialog(this, "Pizza removed successfully!");
+                JOptionPane.showMessageDialog(this, "Pizza Fjernet fra menuen!");
                 this.dispose();
             } catch (NumberFormatException ex) {
                 JOptionPane.showMessageDialog(this, "Invalid Pizza ID", "Error", JOptionPane.ERROR_MESSAGE);
